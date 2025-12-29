@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Measures - Nutrition Log Test Cases</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #2b2d42;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: #1a1c2e;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .regression-info {
+            background: #3a3d5c;
+            padding: 15px;
+            border-radius: 6px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .info-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .info-field label {
+            font-size: 11px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .info-field input {
+            background: #1a1c2e;
+            border: 1px solid #4a4d6c;
+            color: #ffffff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .info-field input:focus {
+            outline: none;
+            border-color: #818cf8;
+        }
+        
+        .instructions {
+            background: #3a3d5c;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #c4c7d4;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-export {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-export:hover {
+            background: #059669;
+        }
+        
+        .btn-add {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-add:hover {
+            background: #2563eb;
+        }
+        
+        .btn-clear {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .btn-clear:hover {
+            background: #d97706;
+        }
+        
+        .section-title {
+            background: #1a1c2e;
+            padding: 12px 20px;
+            margin: 20px 0 10px 0;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            background: #1a1c2e;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1400px;
+        }
+        
+        thead {
+            background: #2b2d42;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            border-bottom: 2px solid #3a3d5c;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #3a3d5c;
+            vertical-align: top;
+            font-size: 13px;
+            color: #e0e0e0;
+        }
+        
+        tbody tr {
+            transition: background 0.2s;
+        }
+        
+        tbody tr:hover {
+            background: #2b2d42;
+        }
+        
+        td[contenteditable="true"] {
+            cursor: text;
+            min-height: 40px;
+        }
+        
+        td[contenteditable="true"]:focus {
+            outline: 2px solid #818cf8;
+            background: #2b2d42;
+            border-radius: 4px;
+        }
+        
+        .col-name {
+            width: 120px;
+            font-weight: 600;
+            color: #a5b4fc;
+        }
+        
+        .col-steps {
+            width: 280px;
+            white-space: pre-wrap;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        .col-result {
+            width: 280px;
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+        
+        .col-status {
+            width: 150px;
+            text-align: left;
+        }
+        
+        .status-radios {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .status-radios label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .status-radios input[type="radio"] {
+            cursor: pointer;
+            margin: 0;
+        }
+        
+        .col-notes {
+            width: 175px;
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+        
+        .col-actions {
+            width: 80px;
+            text-align: center;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 0;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .status-dot.pass {
+            background: #10b981;
+        }
+        
+        .status-dot.fail {
+            background: #ef4444;
+        }
+        
+        .status-dot.not-run {
+            background: #6b7280;
+        }
+        
+        select {
+            width: 100%;
+            padding: 6px 8px;
+            background: #3a3d5c;
+            border: 1px solid #4a4d6c;
+            border-radius: 4px;
+            color: #e0e0e0;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #818cf8;
+        }
+        
+        select.pass {
+            background: #065f46;
+            color: #d1fae5;
+        }
+        
+        select.fail {
+            background: #7f1d1d;
+            color: #fecaca;
+        }
+        
+        .status-radios label.pass {
+            color: #10b981;
+        }
+        
+        .status-radios label.fail {
+            color: #ef4444;
+        }
+        
+        .status-radios label.not-run {
+            color: #9ca3af;
+        }
+        
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .delete-btn:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Measures - Nutrition Log Test Cases</h1>
+            
+            <div class="regression-info">
+                <div class="info-field">
+                    <label>Regression Round</label>
+                    <input type="text" id="regressionRound" placeholder="e.g., 2">
+                </div>
+                <div class="info-field">
+                    <label>Build Version</label>
+                    <input type="text" id="buildVersion" placeholder="e.g., 1.2.3 or build 5">
+                </div>
+                <div class="info-field">
+                    <label>Test Date</label>
+                    <input type="date" id="testDate">
+                </div>
+                <div class="info-field">
+                    <label>Test Name</label>
+                    <input type="text" id="testName" placeholder="e.g., User Chat">
+                </div>
+                <div class="info-field">
+                    <label>Environment</label>
+                    <input type="text" id="environment" placeholder="e.g., Production">
+                </div>
+                <div class="info-field">
+                    <label>Device / OS</label>
+                    <input type="text" id="deviceOS" placeholder="e.g., iPhone 14 Pro, iOS 16">
+                </div>
+            </div>
+            
+            <div class="instructions">
+                ℹ️ Instructions: All cells are editable. Select PASS/FAIL/Not Run from the Status dropdown. Use the Bug column to flag failed tests. Add notes in the Notes column.
+            </div>
+            
+            <div class="controls">
+                <button class="btn-export" onclick="exportToCSV()">📥 EXPORT TO CSV</button>
+                <button class="btn-add" onclick="addNewRow()">➕ ADD POSITIVE TEST CASE</button>
+                <button class="btn-clear" onclick="clearAllData()">🗑️ ADD NEGATIVE TEST CASE</button>
+            </div>
+        </div>
+        
+        <div class="section-title">POSITIVE TEST CASES (Happy Path)</div>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-name">Test Case Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="positiveTestBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">NEGATIVE TEST CASES (Error Handling)</div>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-name">Test Case Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="negativeTestBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        const positiveTests = [
+            {name: "P01 - Bottom Tab Navigation", steps: "1. Launch app\n2. Tap 'Quick log' tab\n3. Tap 'Directory' tab\n4. Tap 'Meal Plan' tab", result: "Each tab loads its respective screen without errors. Active tab is highlighted.", status: "not-run", notes: ""},
+            {name: "P02 - Scan Barcode Access", steps: "1. From Log Intake screen\n2. Tap 'Scan' icon", result: "Camera opens in barcode scanning mode or permission prompt appears", status: "not-run", notes: ""},
+            {name: "P03 - Photo Upload Access", steps: "1. From Log Intake screen\n2. Tap 'Photo' icon", result: "Camera/photo gallery opens or permission prompt appears", status: "not-run", notes: ""},
+            {name: "P04 - Search Access", steps: "1. From Log Intake screen\n2. Tap 'Search' icon", result: "Search interface becomes active with keyboard displayed", status: "not-run", notes: ""},
+            {name: "P05 - Voice Describe Access", steps: "1. From Log Intake screen\n2. Tap 'Describe' icon", result: "Voice input interface activates or microphone permission prompt appears", status: "not-run", notes: ""},
+            {name: "P06 - File Upload Access", steps: "1. From Log Intake screen\n2. Tap 'Upload' icon", result: "File picker or photo gallery opens for image selection", status: "not-run", notes: ""},
+            {name: "P07 - Recent Filter Tab", steps: "1. From Log Intake screen\n2. Select 'Recent' tab", result: "Food list displays recently logged items in chronological order", status: "not-run", notes: ""},
+            {name: "P08 - Frequent Filter Tab", steps: "1. From Log Intake screen\n2. Tap 'Frequent' tab", result: "Food list updates to show most frequently logged items", status: "not-run", notes: ""},
+            {name: "P09 - Sometimes Filter Tab", steps: "1. From Log Intake screen\n2. Tap 'Sometimes' tab", result: "Food list displays occasionally logged items", status: "not-run", notes: ""},
+            {name: "P10 - Not Often Filter Tab", steps: "1. From Log Intake screen\n2. Tap 'Not often' tab", result: "Food list shows rarely logged items", status: "not-run", notes: ""},
+            {name: "P11 - Valid Food Search", steps: "1. Tap search bar\n2. Enter 'banana'\n3. Press search", result: "Search results display relevant food items containing 'banana'", status: "not-run", notes: ""},
+            {name: "P12 - Add Single Food Item", steps: "1. From Recent tab\n2. Locate 'Fresh Grapes'\n3. Tap '+' button", result: "Food item is added to meal log. Confirmation appears.", status: "not-run", notes: ""},
+            {name: "P13 - Add Multiple Items", steps: "1. Tap '+' next to 'Fresh Grapes'\n2. Tap '+' next to 'Creamy Peanut Butter'\n3. Tap '+' next to 'Reduced Fat Milk'", result: "All three items appear in meal log. Each addition is confirmed.", status: "not-run", notes: ""},
+            {name: "P14 - Log from Frequent Tab", steps: "1. Tap 'Frequent' filter\n2. Wait for list load\n3. Tap '+' next to any item", result: "Selected food item logs successfully and appears in meal diary", status: "not-run", notes: ""},
+            {name: "P15 - Scan Valid Barcode", steps: "1. Tap 'Scan' icon\n2. Point camera at product barcode\n3. Wait for recognition\n4. Confirm food item", result: "App recognizes barcode, displays food info, and adds to log", status: "not-run", notes: ""},
+            {name: "P16 - Upload Food Photo", steps: "1. Tap 'Upload' icon\n2. Select food photo from gallery\n3. Wait for processing", result: "App analyzes photo, suggests food items, allows confirmation", status: "not-run", notes: ""},
+            {name: "P17 - Voice Describe Food", steps: "1. Tap 'Describe' icon\n2. Speak 'one cup of oatmeal with berries'\n3. Wait for processing", result: "App transcribes speech, identifies foods, logs with quantities", status: "not-run", notes: ""},
+            {name: "P18 - Directory Navigation", steps: "1. From any screen\n2. Tap 'Directory' in bottom nav", result: "Directory screen loads showing food universe with filter tabs", status: "not-run", notes: ""},
+            {name: "P19 - View Food Universe", steps: "1. Navigate to Directory tab\n2. View food universe section\n3. Scroll through list", result: "All saved foods display with edit icons, organized by frequency", status: "not-run", notes: ""},
+            {name: "P20 - Edit Directory Food", steps: "1. Navigate to Directory tab\n2. Locate 'Reduced Fat Milk'\n3. Tap edit icon", result: "Food edit screen opens allowing modifications or deletion", status: "not-run", notes: ""},
+            {name: "P21 - Meal Plan Navigation", steps: "1. From any screen\n2. Tap 'Meal Plan' in bottom nav", result: "Meal Plan screen loads with date range and calendar", status: "not-run", notes: ""},
+            {name: "P22 - Weekly Calendar View", steps: "1. Navigate to Meal Plan tab\n2. View calendar section", result: "Calendar displays 7 days with current day highlighted", status: "not-run", notes: ""},
+            {name: "P23 - Navigate Previous Week", steps: "1. Navigate to Meal Plan tab\n2. Tap left arrow next to date", result: "Calendar updates to previous week's dates", status: "not-run", notes: ""},
+            {name: "P24 - Navigate Next Week", steps: "1. Navigate to Meal Plan tab\n2. Tap right arrow next to date", result: "Calendar updates to next week's dates", status: "not-run", notes: ""},
+            {name: "P25 - Select Calendar Day", steps: "1. Navigate to Meal Plan tab\n2. Tap on any day", result: "Selected day highlights, meal details update for that day", status: "not-run", notes: ""},
+            {name: "P26 - View Nutritional Summary", steps: "1. Navigate to Meal Plan tab\n2. View 'Caloric Impact' section\n3. Review macros", result: "Displays calories and macros with progress indicators", status: "not-run", notes: ""},
+            {name: "P27 - Add Meal to Time Slot", steps: "1. Navigate to Meal Plan tab\n2. Tap blue '+' next to time\n3. Search and select food", result: "Food selection opens, selected food added to time slot", status: "not-run", notes: ""},
+            {name: "P28 - Edit Planned Meal", steps: "1. Navigate to Meal Plan tab\n2. Tap on existing meal\n3. Modify portion or time", result: "Meal edit interface opens, changes reflect in summary", status: "not-run", notes: ""},
+            {name: "P29 - Delete Planned Meal", steps: "1. Navigate to Meal Plan tab\n2. Tap on existing meal\n3. Select delete\n4. Confirm", result: "Meal removed, nutritional summary updates", status: "not-run", notes: ""},
+            {name: "P30 - Macro Progress Bars", steps: "1. Navigate to Meal Plan tab\n2. View protein, fat, fiber bars\n3. Check values", result: "Each macro shows current/target, bars fill proportionally", status: "not-run", notes: ""},
+            {name: "P31 - View Logged Meal Details", steps: "1. Navigate to Meal Plan tab\n2. View meal entry at 08:33\n3. Check food name and calorie display", result: "Shows food name with calorie badge and time stamp", status: "not-run", notes: ""},
+            {name: "P32 - Caloric Impact Percentage", steps: "1. Navigate to Meal Plan tab\n2. Check caloric impact bar at top\n3. Verify percentage calculation", result: "Shows consumed/target calories with percentage indicator", status: "not-run", notes: ""},
+            {name: "P33 - Directory to Meal Plan Nav", steps: "1. Navigate to Meal Plan tab\n2. Tap 'Directory' in bottom nav", result: "Switches to Directory tab, Meal Plan state preserved when returning", status: "not-run", notes: ""},
+            {name: "P34 - Quick Log from Directory", steps: "1. Navigate to Directory tab\n2. Tap 'Quick log' in bottom nav", result: "Switches to Quick log tab for immediate food logging", status: "not-run", notes: ""},
+            {name: "P35 - Three-Dot Menu Directory", steps: "1. Navigate to Directory tab\n2. Tap three-dot menu icon (top right)\n3. View available options", result: "Menu opens with options like: Sort foods, Clear all, Export data, Settings", status: "not-run", notes: ""},
+            {name: "P36 - Three-Dot Menu Meal Plan", steps: "1. Navigate to Meal Plan tab\n2. Tap three-dot menu icon (top right)\n3. View available options", result: "Menu opens with options like: Copy week, Clear week, Export meal plan", status: "not-run", notes: ""},
+            {name: "P37 - Hamburger Menu Navigation", steps: "1. From any screen\n2. Tap hamburger menu icon (top left)\n3. View navigation options", result: "Side menu opens with options: Profile, Settings, Help, About, Sign out", status: "not-run", notes: ""},
+            {name: "P38 - Empty Directory State", steps: "1. Use fresh account or clear all foods\n2. Navigate to Directory tab\n3. View empty state", result: "Displays empty state message: 'Your food universe is empty. Start logging!'", status: "not-run", notes: ""},
+            {name: "P39 - Empty Meal Plan Day", steps: "1. Navigate to Meal Plan tab\n2. Select a day with no planned meals\n3. View empty state", result: "Shows time slots with + buttons, nutritional summary shows 0/target values", status: "not-run", notes: ""},
+            {name: "P40 - Real-time Macro Calculation", steps: "1. Navigate to Meal Plan tab\n2. Add a new meal\n3. Observe nutritional summary updates", result: "Caloric impact and macro bars update immediately, smooth animations", status: "not-run", notes: ""},
+            {name: "P41 - Food List Display Format", steps: "1. Navigate to Log Intake screen\n2. View Recent tab food list", result: "All food names readable, long names show ellipsis, buttons aligned properly", status: "not-run", notes: ""},
+            {name: "P42 - Truncated Food Name Display", steps: "1. View 'Iso-100 Hydrolyzed 100% Whey Protein...' item", result: "Name displays with ellipsis, full name visible on tap/hold or detail view", status: "not-run", notes: ""},
+            {name: "P43 - Search and Log Specific Food", steps: "1. Tap search bar\n2. Enter 'peanut butter'\n3. Select 'Creamy Peanut Butter'\n4. Confirm portion size\n5. Tap add", result: "Food appears in meal log with specified portion size", status: "not-run", notes: ""},
+            {name: "P44 - Directory Filter by All", steps: "1. Navigate to Directory tab\n2. Tap 'All' filter button", result: "Displays complete list of all foods regardless of frequency", status: "not-run", notes: ""},
+            {name: "P45 - Directory Filter by Frequent", steps: "1. Navigate to Directory tab\n2. Tap 'Frequent' filter button", result: "List updates to show only frequently logged foods", status: "not-run", notes: ""},
+            {name: "P46 - Directory Filter by Sometimes", steps: "1. Navigate to Directory tab\n2. Tap 'Sometimes' filter button", result: "List updates to show only occasionally logged foods", status: "not-run", notes: ""},
+            {name: "P47 - Directory Filter by Not Often", steps: "1. Navigate to Directory tab\n2. Tap 'Not often' filter button", result: "List updates to show only rarely logged foods", status: "not-run", notes: ""},
+            {name: "P48 - Search Food in Directory", steps: "1. Navigate to Directory tab\n2. Tap search bar\n3. Enter 'berry'\n4. View results", result: "Search filters food list to show matching items like 'Organic Boomin' Berry Bagels'", status: "not-run", notes: ""},
+            {name: "P49 - View Planned Meals by Time", steps: "1. Navigate to Meal Plan tab\n2. Scroll to meal times section\n3. View meals at various times", result: "Meals organized chronologically with time stamps and + buttons", status: "not-run", notes: ""},
+            {name: "P50 - Meal Plan Data Persistence", steps: "1. Add meals to Meal Plan\n2. Close app completely\n3. Reopen app and navigate to Meal Plan", result: "All planned meals persist, nutritional data remains accurate, calendar maintains date", status: "not-run", notes: ""},
+            {name: "P51 - Directory Food Count", steps: "1. Navigate to Directory tab\n2. Add several foods to directory\n3. Check if food count is displayed", result: "If implemented, displays total number of foods in directory", status: "not-run", notes: ""},
+            {name: "P52 - Device Orientation Change", steps: "1. Hold device in portrait\n2. Begin logging food\n3. Rotate to landscape\n4. Rotate back to portrait", result: "UI adapts smoothly, no data loss, all elements remain accessible", status: "not-run", notes: ""},
+            {name: "P53 - Accessibility Screen Reader", steps: "1. Enable VoiceOver (iOS) or TalkBack (Android)\n2. Navigate Log Intake screen\n3. Test all buttons and inputs", result: "All UI elements have proper labels, navigation is logical, buttons announce function", status: "not-run", notes: ""},
+            {name: "P54 - Add Duplicate Food Items", steps: "1. Add 'Fresh Grapes' to log\n2. Immediately add 'Fresh Grapes' again", result: "App allows duplicate entries for multiple servings or prompts to adjust quantity", status: "not-run", notes: ""},
+            {name: "P55 - Filter with No Matching Items", steps: "1. Tap 'Not often' filter\n2. View results when no items exist in category", result: "Clean empty state: 'No foods in this category yet' with helpful suggestion", status: "not-run", notes: ""}
+        ];
+        
+        const negativeTests = [
+            {name: "N01 - Empty Search Query", steps: "1. Tap search bar\n2. Don't enter text\n3. Press search", result: "App displays placeholder or shows Recent list. No crash.", status: "not-run", notes: ""},
+            {name: "N02 - Special Characters Search", steps: "1. Tap search bar\n2. Enter '@#$%^&*()'\n3. Press search", result: "App handles gracefully with 'no results' or ignores chars", status: "not-run", notes: ""},
+            {name: "N03 - SQL Injection Search", steps: "1. Tap search bar\n2. Enter \"'; DROP TABLE foods; --\"\n3. Press search", result: "App sanitizes input. No database manipulation occurs.", status: "not-run", notes: ""},
+            {name: "N04 - Long Search String", steps: "1. Tap search bar\n2. Enter 500+ character string\n3. Press search", result: "App enforces limit, truncates, or handles gracefully", status: "not-run", notes: ""},
+            {name: "N05 - Non-existent Food", steps: "1. Tap search bar\n2. Enter 'xyzabc123zzzz'\n3. Press search", result: "Displays 'No results found' with helpful suggestion", status: "not-run", notes: ""},
+            {name: "N06 - Invalid Barcode Scan", steps: "1. Tap 'Scan' icon\n2. Point at damaged barcode\n3. Wait 5-10 seconds", result: "Error message: 'Unable to read barcode. Try again or enter manually'", status: "not-run", notes: ""},
+            {name: "N07 - Non-Food Barcode", steps: "1. Tap 'Scan' icon\n2. Scan book/electronics barcode\n3. Wait for result", result: "Indicates 'Product not found in food database'", status: "not-run", notes: ""},
+            {name: "N08 - Poor Lighting Scan", steps: "1. Tap 'Scan' icon\n2. Move to low-light area\n3. Attempt scan", result: "Displays guidance: 'Need more light' or 'Move to better lighting'", status: "not-run", notes: ""},
+            {name: "N09 - Scan No Permission", steps: "1. Deny camera permission\n2. Tap 'Scan' icon", result: "Permission request prompt with explanation", status: "not-run", notes: ""},
+            {name: "N10 - Upload No Permission", steps: "1. Deny photo permission\n2. Tap 'Upload' icon", result: "Permission request appears explaining need", status: "not-run", notes: ""},
+            {name: "N11 - Corrupted Image Upload", steps: "1. Tap 'Upload' icon\n2. Select corrupted file\n3. Attempt process", result: "Error message: 'Unable to process image. Try another photo'", status: "not-run", notes: ""},
+            {name: "N12 - Non-Food Photo Upload", steps: "1. Tap 'Upload' icon\n2. Select photo of car/building\n3. Wait for AI", result: "Indicates 'No food detected in image'", status: "not-run", notes: ""},
+            {name: "N13 - Oversized Image Upload", steps: "1. Tap 'Upload' icon\n2. Select file >50MB\n3. Attempt upload", result: "Displays file size limit or auto-compresses", status: "not-run", notes: ""},
+            {name: "N14 - Voice No Permission", steps: "1. Deny microphone permission\n2. Tap 'Describe' icon", result: "Permission prompt appears with explanation", status: "not-run", notes: ""},
+            {name: "N15 - Voice Background Noise", steps: "1. Tap 'Describe' icon\n2. Speak in noisy environment\n3. Describe food", result: "Struggles or asks 'Please speak in quieter environment'", status: "not-run", notes: ""},
+            {name: "N16 - Voice Unclear Speech", steps: "1. Tap 'Describe' icon\n2. Mumble unclearly\n3. Say food name", result: "Displays 'Couldn't understand. Please repeat' or shows best guess", status: "not-run", notes: ""},
+            {name: "N17 - Voice Wrong Language", steps: "1. Tap 'Describe' icon\n2. Speak in Mandarin/Arabic\n3. Complete speech", result: "Displays 'Language not supported' or poor transcription", status: "not-run", notes: ""},
+            {name: "N18 - Offline Food Logging", steps: "1. Turn off WiFi and cellular\n2. Attempt to add food\n3. Tap '+' button", result: "App queues entry with 'Will sync when online' message", status: "not-run", notes: ""},
+            {name: "N19 - Rapid Button Taps", steps: "1. Locate any food item\n2. Rapidly tap '+' 10 times in 2 sec", result: "Only one entry logged or proper handling with debouncing", status: "not-run", notes: ""},
+            {name: "N20 - App Backgrounding", steps: "1. Start adding food\n2. Press home button\n3. Wait 10 seconds\n4. Return to app", result: "App preserves state, entry maintained or saved as draft", status: "not-run", notes: ""},
+            {name: "N21 - Low Device Memory", steps: "1. Fill device memory to <10%\n2. Launch app\n3. Log food with photo", result: "Functions with degradation or displays low memory warning", status: "not-run", notes: ""},
+            {name: "N22 - Skip Required Fields", steps: "1. Begin adding custom food\n2. Leave required fields empty\n3. Attempt save", result: "Validation message with highlighted fields", status: "not-run", notes: ""},
+            {name: "N23 - Navigate Without Saving", steps: "1. Start adding food entry\n2. Switch to Directory tab\n3. Return to Quick log", result: "Unsaved changes prompt or auto-saved as draft", status: "not-run", notes: ""},
+            {name: "N24 - Empty List Scroll", steps: "1. Clear all Recent items\n2. View Recent tab\n3. Attempt scroll", result: "Displays empty state message, no scroll errors", status: "not-run", notes: ""},
+            {name: "N25 - Exceed Calorie Target", steps: "1. Navigate to Meal Plan\n2. Add meals exceeding target\n3. View caloric bar", result: "Progress bar fills beyond 100%, shows exceeded amount", status: "not-run", notes: ""}
+        ];
+        
+        function renderTests() {
+            const positiveBody = document.getElementById('positiveTestBody');
+            const negativeBody = document.getElementById('negativeTestBody');
+            
+            positiveBody.innerHTML = '';
+            negativeBody.innerHTML = '';
+            
+            positiveTests.forEach(function(test, index) {
+                positiveBody.appendChild(createTestRow(test, index, 'positive'));
+            });
+            
+            negativeTests.forEach(function(test, index) {
+                negativeBody.appendChild(createTestRow(test, index, 'negative'));
+            });
+        }
+        
+        function createTestRow(test, index, type) {
+            const row = document.createElement('tr');
+            
+            row.innerHTML = 
+                '<td contenteditable="true" class="col-name">' + test.name + '</td>' +
+                '<td contenteditable="true" class="col-steps">' + test.steps + '</td>' +
+                '<td contenteditable="true" class="col-result">' + test.result + '</td>' +
+                '<td class="col-status">' +
+                    '<div class="status-radios">' +
+                        '<label class="pass">' +
+                            '<input type="radio" name="status_' + type + '_' + index + '" value="pass" ' + 
+                            (test.status === 'pass' ? 'checked' : '') + ' onchange="updateStatus(\'' + type + '\', ' + index + ', \'pass\')"> Pass' +
+                        '</label>' +
+                        '<label class="fail">' +
+                            '<input type="radio" name="status_' + type + '_' + index + '" value="fail" ' + 
+                            (test.status === 'fail' ? 'checked' : '') + ' onchange="updateStatus(\'' + type + '\', ' + index + ', \'fail\')"> Fail' +
+                        '</label>' +
+                        '<label class="not-run">' +
+                            '<input type="radio" name="status_' + type + '_' + index + '" value="not-run" ' + 
+                            (test.status === 'not-run' ? 'checked' : '') + ' onchange="updateStatus(\'' + type + '\', ' + index + ', \'not-run\')"> Not Run' +
+                        '</label>' +
+                    '</div>' +
+                '</td>' +
+                '<td contenteditable="true" class="col-notes">' + test.notes + '</td>' +
+                '<td class="col-actions"><button class="delete-btn" onclick="deleteTest(\'' + type + '\', ' + index + ')">×</button></td>';
+            
+            return row;
+        }
+        
+        function updateStatus(type, index, newStatus) {
+            if (type === 'positive') {
+                positiveTests[index].status = newStatus;
+            } else {
+                negativeTests[index].status = newStatus;
+            }
+            renderTests();
+        }
+        
+        function deleteTest(type, index) {
+            if (confirm('Are you sure you want to delete this test case?')) {
+                if (type === 'positive') {
+                    positiveTests.splice(index, 1);
+                } else {
+                    negativeTests.splice(index, 1);
+                }
+                renderTests();
+            }
+        }
+        
+        function addNewRow() {
+            const num = positiveTests.length + 1;
+            positiveTests.push({
+                name: 'P' + String(num).padStart(2, '0') + ' - New Test Case',
+                steps: '1. Step one\n2. Step two',
+                result: 'Expected result',
+                status: 'not-run',
+                notes: ''
+            });
+            renderTests();
+        }
+        
+        function clearAllData() {
+            const num = negativeTests.length + 1;
+            negativeTests.push({
+                name: 'N' + String(num).padStart(2, '0') + ' - New Test Case',
+                steps: '1. Step one\n2. Step two',
+                result: 'Expected result',
+                status: 'not-run',
+                notes: ''
+            });
+            renderTests();
+        }
+        
+        function exportToCSV() {
+            const regressionRound = document.getElementById('regressionRound').value;
+            const buildVersion = document.getElementById('buildVersion').value;
+            const testDate = document.getElementById('testDate').value;
+            const testName = document.getElementById('testName').value;
+            const environment = document.getElementById('environment').value;
+            const deviceOS = document.getElementById('deviceOS').value;
+            
+            let csv = 'Measures - Nutrition Log Test Cases\n\n';
+            csv += 'Regression Round,' + regressionRound + '\n';
+            csv += 'Build Version,' + buildVersion + '\n';
+            csv += 'Test Date,' + testDate + '\n';
+            csv += 'Test Name,' + testName + '\n';
+            csv += 'Environment,' + environment + '\n';
+            csv += 'Device/OS,' + deviceOS + '\n\n';
+            
+            csv += 'POSITIVE TEST CASES\n';
+            csv += 'Test Case Name,Steps,Expected Result,Status,Notes\n';
+            
+            positiveTests.forEach(function(test) {
+                csv += '"' + test.name + '","' + test.steps.replace(/"/g, '""') + '","' + 
+                       test.result.replace(/"/g, '""') + '","' + test.status + '","' + 
+                       test.notes.replace(/"/g, '""') + '"\n';
+            });
+            
+            csv += '\nNEGATIVE TEST CASES\n';
+            csv += 'Test Case Name,Steps,Expected Result,Status,Notes\n';
+            
+            negativeTests.forEach(function(test) {
+                csv += '"' + test.name + '","' + test.steps.replace(/"/g, '""') + '","' + 
+                       test.result.replace(/"/g, '""') + '","' + test.status + '","' + 
+                       test.notes.replace(/"/g, '""') + '"\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Measures_Nutrition_Log_TestCases_' + (buildVersion || 'export') + '.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+        
+        renderTests();
+    </script>
+</body>
+</html>
