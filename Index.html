@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Measures - Nutrition Log Test Cases</title>
+    <title>Epic 25 Phase 6-7 - Freemium Feature Gating Test Cases</title>
     <style>
         * {
             margin: 0;
@@ -34,6 +34,12 @@
             color: #ffffff;
             font-size: 24px;
             font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .header .subtitle {
+            color: #9ca3af;
+            font-size: 14px;
             margin-bottom: 15px;
         }
         
@@ -72,6 +78,34 @@
         .info-field input:focus {
             outline: none;
             border-color: #818cf8;
+        }
+        
+        .prerequisites {
+            background: #3a3d5c;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        
+        .prerequisites h3 {
+            color: #f59e0b;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .prerequisites ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .prerequisites li {
+            padding: 5px 0;
+            font-size: 13px;
+        }
+        
+        .prerequisites input[type="checkbox"] {
+            margin-right: 8px;
         }
         
         .instructions {
@@ -117,15 +151,6 @@
             background: #2563eb;
         }
         
-        .btn-clear {
-            background: #f59e0b;
-            color: white;
-        }
-        
-        .btn-clear:hover {
-            background: #d97706;
-        }
-        
         .section-title {
             background: #1a1c2e;
             padding: 12px 20px;
@@ -142,6 +167,7 @@
             overflow-x: auto;
             background: #1a1c2e;
             border-radius: 0 0 8px 8px;
+            margin-bottom: 20px;
         }
         
         table {
@@ -194,8 +220,14 @@
             border-radius: 4px;
         }
         
+        .col-id {
+            width: 80px;
+            font-weight: 600;
+            color: #a5b4fc;
+        }
+        
         .col-name {
-            width: 120px;
+            width: 180px;
             font-weight: 600;
             color: #a5b4fc;
         }
@@ -238,68 +270,6 @@
             margin: 0;
         }
         
-        .col-notes {
-            width: 175px;
-            white-space: pre-wrap;
-            font-size: 12px;
-        }
-        
-        .col-actions {
-            width: 80px;
-            text-align: center;
-        }
-        
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 0;
-        }
-        
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        
-        .status-dot.pass {
-            background: #10b981;
-        }
-        
-        .status-dot.fail {
-            background: #ef4444;
-        }
-        
-        .status-dot.not-run {
-            background: #6b7280;
-        }
-        
-        select {
-            width: 100%;
-            padding: 6px 8px;
-            background: #3a3d5c;
-            border: 1px solid #4a4d6c;
-            border-radius: 4px;
-            color: #e0e0e0;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        select:focus {
-            outline: none;
-            border-color: #818cf8;
-        }
-        
-        select.pass {
-            background: #065f46;
-            color: #d1fae5;
-        }
-        
-        select.fail {
-            background: #7f1d1d;
-            color: #fecaca;
-        }
-        
         .status-radios label.pass {
             color: #10b981;
         }
@@ -310,6 +280,17 @@
         
         .status-radios label.not-run {
             color: #9ca3af;
+        }
+        
+        .col-notes {
+            width: 175px;
+            white-space: pre-wrap;
+            font-size: 12px;
+        }
+        
+        .col-actions {
+            width: 80px;
+            text-align: center;
         }
         
         .delete-btn {
@@ -326,12 +307,83 @@
         .delete-btn:hover {
             background: #b91c1c;
         }
+        
+        .summary-section {
+            background: #1a1c2e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .summary-section h2 {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .summary-table {
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .summary-table th,
+        .summary-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #3a3d5c;
+        }
+        
+        .summary-table input[type="number"] {
+            background: #3a3d5c;
+            border: 1px solid #4a4d6c;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            width: 60px;
+            text-align: center;
+        }
+        
+        .signoff-section {
+            background: #1a1c2e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .signoff-section h2 {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .signoff-table {
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .signoff-table th,
+        .signoff-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #3a3d5c;
+        }
+        
+        .signoff-table input[type="text"],
+        .signoff-table input[type="date"] {
+            background: #3a3d5c;
+            border: 1px solid #4a4d6c;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Measures - Nutrition Log Test Cases</h1>
+            <h1>Epic 25 Phase 6-7: Freemium Feature Gating - Test Cases</h1>
+            <div class="subtitle">Version 1.0 | December 30, 2025</div>
             
             <div class="regression-info">
                 <div class="info-field">
@@ -347,37 +399,45 @@
                     <input type="date" id="testDate">
                 </div>
                 <div class="info-field">
-                    <label>Test Name</label>
-                    <input type="text" id="testName" placeholder="e.g., User Chat">
+                    <label>Tester Name</label>
+                    <input type="text" id="testerName" placeholder="e.g., John Doe">
                 </div>
                 <div class="info-field">
                     <label>Environment</label>
-                    <input type="text" id="environment" placeholder="e.g., Production">
+                    <input type="text" id="environment" placeholder="e.g., TestFlight">
                 </div>
                 <div class="info-field">
                     <label>Device / OS</label>
-                    <input type="text" id="deviceOS" placeholder="e.g., iPhone 14 Pro, iOS 16">
+                    <input type="text" id="deviceOS" placeholder="e.g., iPhone 14 Pro, iOS 17">
                 </div>
             </div>
             
+            <div class="prerequisites">
+                <h3>⚠️ Prerequisites</h3>
+                <ul>
+                    <li><input type="checkbox" id="prereq1"> App is built and running on device/simulator</li>
+                    <li><input type="checkbox" id="prereq2"> User is NOT premium (fresh install or premium status cleared)</li>
+                    <li><input type="checkbox" id="prereq3"> RevenueCat Test Store is configured for testing purchases</li>
+                </ul>
+            </div>
+            
             <div class="instructions">
-                ℹ️ Instructions: All cells are editable. Select PASS/FAIL/Not Run from the Status dropdown. Use the Bug column to flag failed tests. Add notes in the Notes column.
+                ℹ️ Instructions: All cells are editable. Select Pass/Fail/Not Run for each test case. Add notes for any issues found. Complete the summary section at the bottom.
             </div>
             
             <div class="controls">
                 <button class="btn-export" onclick="exportToCSV()">📥 EXPORT TO CSV</button>
-                <button class="btn-add" onclick="addNewRow()">➕ ADD POSITIVE TEST CASE</button>
-                <button class="btn-clear" onclick="clearAllData()">🗑️ ADD NEGATIVE TEST CASE</button>
+                <button class="btn-add" onclick="addCustomTest()">➕ ADD CUSTOM TEST CASE</button>
             </div>
         </div>
         
-        <div class="section-title">POSITIVE TEST CASES (Happy Path)</div>
-        
+        <div class="section-title">1. AI Photo Scan Gating (7 Tests)</div>
         <div class="table-wrapper">
             <table>
                 <thead>
                     <tr>
-                        <th class="col-name">Test Case Name</th>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
                         <th class="col-steps">Steps</th>
                         <th class="col-result">Expected Result</th>
                         <th class="col-status">Status</th>
@@ -385,249 +445,457 @@
                         <th class="col-actions">Del</th>
                     </tr>
                 </thead>
-                <tbody id="positiveTestBody">
+                <tbody id="aiPhotoScanBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">2. AI Quick Add Gating (5 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="aiQuickAddBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">3. Barcode Scanner Gating (7 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="barcodeScannerBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">4. History Gating - 14-Day Limit (6 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="historyGatingBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">5. Custom Foods Limit - 3 Max (8 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="customFoodsBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">6. Advanced Nutrients Gating (6 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="advancedNutrientsBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">7. Paywall Integration (6 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="paywallBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">8. Premium Status Persistence (3 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="premiumPersistenceBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="summary-section">
+            <h2>Test Summary</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Tests</th>
+                        <th>Pass</th>
+                        <th>Fail</th>
+                        <th>Blocked</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AI Photo Scan</td>
+                        <td>7</td>
+                        <td><input type="number" id="summary-ai-photo-pass" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-ai-photo-fail" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-ai-photo-blocked" min="0" max="7" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>AI Quick Add</td>
+                        <td>5</td>
+                        <td><input type="number" id="summary-ai-quick-pass" min="0" max="5" value="0"></td>
+                        <td><input type="number" id="summary-ai-quick-fail" min="0" max="5" value="0"></td>
+                        <td><input type="number" id="summary-ai-quick-blocked" min="0" max="5" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Barcode Scanner</td>
+                        <td>7</td>
+                        <td><input type="number" id="summary-barcode-pass" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-barcode-fail" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-barcode-blocked" min="0" max="7" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>History Gating</td>
+                        <td>6</td>
+                        <td><input type="number" id="summary-history-pass" min="0" max="6" value="0"></td>
+                        <td><input type="number" id="summary-history-fail" min="0" max="6" value="0"></td>
+                        <td><input type="number" id="summary-history-blocked" min="0" max="6" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Custom Foods</td>
+                        <td>8</td>
+                        <td><input type="number" id="summary-custom-pass" min="0" max="8" value="0"></td>
+                        <td><input type="number" id="summary-custom-fail" min="0" max="8" value="0"></td>
+                        <td><input type="number" id="summary-custom-blocked" min="0" max="8" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Nutrients</td>
+                        <td>6</td>
+                        <td><input type="number" id="summary-nutrients-pass" min="0" max="6" value="0"></td>
+                        <td><input type="number" id="summary-nutrients-fail" min="0" max="6" value="0"></td>
+                        <td><input type="number" id="summary-nutrients-blocked" min="0" max="6" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Paywall Integration</td>
+                        <td>6</td>
+                        <td><input type="number" id="summary-paywall-pass" min="0" max="6" value="0"></td>
+                        <td><input type="number" id="summary-paywall-fail" min="0" max="6" value="0"></td>
+                        <td><input type="number" id="summary-paywall-blocked" min="0" max="6" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Premium Persistence</td>
+                        <td>3</td>
+                        <td><input type="number" id="summary-premium-pass" min="0" max="3" value="0"></td>
+                        <td><input type="number" id="summary-premium-fail" min="0" max="3" value="0"></td>
+                        <td><input type="number" id="summary-premium-blocked" min="0" max="3" value="0"></td>
+                    </tr>
+                    <tr style="font-weight: 600; background: #3a3d5c;">
+                        <td>TOTAL</td>
+                        <td>48</td>
+                        <td id="total-pass">0</td>
+                        <td id="total-fail">0</td>
+                        <td id="total-blocked">0</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         
-        <div class="section-title">NEGATIVE TEST CASES (Error Handling)</div>
-        
-        <div class="table-wrapper">
-            <table>
+        <div class="signoff-section">
+            <h2>Sign-Off</h2>
+            <table class="signoff-table">
                 <thead>
                     <tr>
-                        <th class="col-name">Test Case Name</th>
-                        <th class="col-steps">Steps</th>
-                        <th class="col-result">Expected Result</th>
-                        <th class="col-status">Status</th>
-                        <th class="col-notes">Notes</th>
-                        <th class="col-actions">Del</th>
+                        <th>Role</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Signature</th>
                     </tr>
                 </thead>
-                <tbody id="negativeTestBody">
+                <tbody>
+                    <tr>
+                        <td>Tester</td>
+                        <td><input type="text" id="signoff-tester-name"></td>
+                        <td><input type="date" id="signoff-tester-date"></td>
+                        <td><input type="text" id="signoff-tester-sig"></td>
+                    </tr>
+                    <tr>
+                        <td>Developer</td>
+                        <td><input type="text" id="signoff-dev-name"></td>
+                        <td><input type="date" id="signoff-dev-date"></td>
+                        <td><input type="text" id="signoff-dev-sig"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
     
     <script>
-        const positiveTests = [
-            {name: "P01 - Bottom Tab Navigation", steps: "1. Launch app\n2. Tap 'Quick log' tab\n3. Tap 'Directory' tab\n4. Tap 'Meal Plan' tab", result: "Each tab loads its respective screen without errors. Active tab is highlighted.", status: "not-run", notes: ""},
-            {name: "P02 - Scan Barcode Access", steps: "1. From Log Intake screen\n2. Tap 'Scan' icon", result: "Camera opens in barcode scanning mode or permission prompt appears", status: "not-run", notes: ""},
-            {name: "P03 - Photo Upload Access", steps: "1. From Log Intake screen\n2. Tap 'Photo' icon", result: "Camera/photo gallery opens or permission prompt appears", status: "not-run", notes: ""},
-            {name: "P04 - Search Access", steps: "1. From Log Intake screen\n2. Tap 'Search' icon", result: "Search interface becomes active with keyboard displayed", status: "not-run", notes: ""},
-            {name: "P05 - Voice Describe Access", steps: "1. From Log Intake screen\n2. Tap 'Describe' icon", result: "Voice input interface activates or microphone permission prompt appears", status: "not-run", notes: ""},
-            {name: "P06 - File Upload Access", steps: "1. From Log Intake screen\n2. Tap 'Upload' icon", result: "File picker or photo gallery opens for image selection", status: "not-run", notes: ""},
-            {name: "P07 - Recent Filter Tab", steps: "1. From Log Intake screen\n2. Select 'Recent' tab", result: "Food list displays recently logged items in chronological order", status: "not-run", notes: ""},
-            {name: "P08 - Frequent Filter Tab", steps: "1. From Log Intake screen\n2. Tap 'Frequent' tab", result: "Food list updates to show most frequently logged items", status: "not-run", notes: ""},
-            {name: "P09 - Sometimes Filter Tab", steps: "1. From Log Intake screen\n2. Tap 'Sometimes' tab", result: "Food list displays occasionally logged items", status: "not-run", notes: ""},
-            {name: "P10 - Not Often Filter Tab", steps: "1. From Log Intake screen\n2. Tap 'Not often' tab", result: "Food list shows rarely logged items", status: "not-run", notes: ""},
-            {name: "P11 - Valid Food Search", steps: "1. Tap search bar\n2. Enter 'banana'\n3. Press search", result: "Search results display relevant food items containing 'banana'", status: "not-run", notes: ""},
-            {name: "P12 - Add Single Food Item", steps: "1. From Recent tab\n2. Locate 'Fresh Grapes'\n3. Tap '+' button", result: "Food item is added to meal log. Confirmation appears.", status: "not-run", notes: ""},
-            {name: "P13 - Add Multiple Items", steps: "1. Tap '+' next to 'Fresh Grapes'\n2. Tap '+' next to 'Creamy Peanut Butter'\n3. Tap '+' next to 'Reduced Fat Milk'", result: "All three items appear in meal log. Each addition is confirmed.", status: "not-run", notes: ""},
-            {name: "P14 - Log from Frequent Tab", steps: "1. Tap 'Frequent' filter\n2. Wait for list load\n3. Tap '+' next to any item", result: "Selected food item logs successfully and appears in meal diary", status: "not-run", notes: ""},
-            {name: "P15 - Scan Valid Barcode", steps: "1. Tap 'Scan' icon\n2. Point camera at product barcode\n3. Wait for recognition\n4. Confirm food item", result: "App recognizes barcode, displays food info, and adds to log", status: "not-run", notes: ""},
-            {name: "P16 - Upload Food Photo", steps: "1. Tap 'Upload' icon\n2. Select food photo from gallery\n3. Wait for processing", result: "App analyzes photo, suggests food items, allows confirmation", status: "not-run", notes: ""},
-            {name: "P17 - Voice Describe Food", steps: "1. Tap 'Describe' icon\n2. Speak 'one cup of oatmeal with berries'\n3. Wait for processing", result: "App transcribes speech, identifies foods, logs with quantities", status: "not-run", notes: ""},
-            {name: "P18 - Directory Navigation", steps: "1. From any screen\n2. Tap 'Directory' in bottom nav", result: "Directory screen loads showing food universe with filter tabs", status: "not-run", notes: ""},
-            {name: "P19 - View Food Universe", steps: "1. Navigate to Directory tab\n2. View food universe section\n3. Scroll through list", result: "All saved foods display with edit icons, organized by frequency", status: "not-run", notes: ""},
-            {name: "P20 - Edit Directory Food", steps: "1. Navigate to Directory tab\n2. Locate 'Reduced Fat Milk'\n3. Tap edit icon", result: "Food edit screen opens allowing modifications or deletion", status: "not-run", notes: ""},
-            {name: "P21 - Meal Plan Navigation", steps: "1. From any screen\n2. Tap 'Meal Plan' in bottom nav", result: "Meal Plan screen loads with date range and calendar", status: "not-run", notes: ""},
-            {name: "P22 - Weekly Calendar View", steps: "1. Navigate to Meal Plan tab\n2. View calendar section", result: "Calendar displays 7 days with current day highlighted", status: "not-run", notes: ""},
-            {name: "P23 - Navigate Previous Week", steps: "1. Navigate to Meal Plan tab\n2. Tap left arrow next to date", result: "Calendar updates to previous week's dates", status: "not-run", notes: ""},
-            {name: "P24 - Navigate Next Week", steps: "1. Navigate to Meal Plan tab\n2. Tap right arrow next to date", result: "Calendar updates to next week's dates", status: "not-run", notes: ""},
-            {name: "P25 - Select Calendar Day", steps: "1. Navigate to Meal Plan tab\n2. Tap on any day", result: "Selected day highlights, meal details update for that day", status: "not-run", notes: ""},
-            {name: "P26 - View Nutritional Summary", steps: "1. Navigate to Meal Plan tab\n2. View 'Caloric Impact' section\n3. Review macros", result: "Displays calories and macros with progress indicators", status: "not-run", notes: ""},
-            {name: "P27 - Add Meal to Time Slot", steps: "1. Navigate to Meal Plan tab\n2. Tap blue '+' next to time\n3. Search and select food", result: "Food selection opens, selected food added to time slot", status: "not-run", notes: ""},
-            {name: "P28 - Edit Planned Meal", steps: "1. Navigate to Meal Plan tab\n2. Tap on existing meal\n3. Modify portion or time", result: "Meal edit interface opens, changes reflect in summary", status: "not-run", notes: ""},
-            {name: "P29 - Delete Planned Meal", steps: "1. Navigate to Meal Plan tab\n2. Tap on existing meal\n3. Select delete\n4. Confirm", result: "Meal removed, nutritional summary updates", status: "not-run", notes: ""},
-            {name: "P30 - Macro Progress Bars", steps: "1. Navigate to Meal Plan tab\n2. View protein, fat, fiber bars\n3. Check values", result: "Each macro shows current/target, bars fill proportionally", status: "not-run", notes: ""},
-            {name: "P31 - View Logged Meal Details", steps: "1. Navigate to Meal Plan tab\n2. View meal entry at 08:33\n3. Check food name and calorie display", result: "Shows food name with calorie badge and time stamp", status: "not-run", notes: ""},
-            {name: "P32 - Caloric Impact Percentage", steps: "1. Navigate to Meal Plan tab\n2. Check caloric impact bar at top\n3. Verify percentage calculation", result: "Shows consumed/target calories with percentage indicator", status: "not-run", notes: ""},
-            {name: "P33 - Directory to Meal Plan Nav", steps: "1. Navigate to Meal Plan tab\n2. Tap 'Directory' in bottom nav", result: "Switches to Directory tab, Meal Plan state preserved when returning", status: "not-run", notes: ""},
-            {name: "P34 - Quick Log from Directory", steps: "1. Navigate to Directory tab\n2. Tap 'Quick log' in bottom nav", result: "Switches to Quick log tab for immediate food logging", status: "not-run", notes: ""},
-            {name: "P35 - Three-Dot Menu Directory", steps: "1. Navigate to Directory tab\n2. Tap three-dot menu icon (top right)\n3. View available options", result: "Menu opens with options like: Sort foods, Clear all, Export data, Settings", status: "not-run", notes: ""},
-            {name: "P36 - Three-Dot Menu Meal Plan", steps: "1. Navigate to Meal Plan tab\n2. Tap three-dot menu icon (top right)\n3. View available options", result: "Menu opens with options like: Copy week, Clear week, Export meal plan", status: "not-run", notes: ""},
-            {name: "P37 - Hamburger Menu Navigation", steps: "1. From any screen\n2. Tap hamburger menu icon (top left)\n3. View navigation options", result: "Side menu opens with options: Profile, Settings, Help, About, Sign out", status: "not-run", notes: ""},
-            {name: "P38 - Empty Directory State", steps: "1. Use fresh account or clear all foods\n2. Navigate to Directory tab\n3. View empty state", result: "Displays empty state message: 'Your food universe is empty. Start logging!'", status: "not-run", notes: ""},
-            {name: "P39 - Empty Meal Plan Day", steps: "1. Navigate to Meal Plan tab\n2. Select a day with no planned meals\n3. View empty state", result: "Shows time slots with + buttons, nutritional summary shows 0/target values", status: "not-run", notes: ""},
-            {name: "P40 - Real-time Macro Calculation", steps: "1. Navigate to Meal Plan tab\n2. Add a new meal\n3. Observe nutritional summary updates", result: "Caloric impact and macro bars update immediately, smooth animations", status: "not-run", notes: ""},
-            {name: "P41 - Food List Display Format", steps: "1. Navigate to Log Intake screen\n2. View Recent tab food list", result: "All food names readable, long names show ellipsis, buttons aligned properly", status: "not-run", notes: ""},
-            {name: "P42 - Truncated Food Name Display", steps: "1. View 'Iso-100 Hydrolyzed 100% Whey Protein...' item", result: "Name displays with ellipsis, full name visible on tap/hold or detail view", status: "not-run", notes: ""},
-            {name: "P43 - Search and Log Specific Food", steps: "1. Tap search bar\n2. Enter 'peanut butter'\n3. Select 'Creamy Peanut Butter'\n4. Confirm portion size\n5. Tap add", result: "Food appears in meal log with specified portion size", status: "not-run", notes: ""},
-            {name: "P44 - Directory Filter by All", steps: "1. Navigate to Directory tab\n2. Tap 'All' filter button", result: "Displays complete list of all foods regardless of frequency", status: "not-run", notes: ""},
-            {name: "P45 - Directory Filter by Frequent", steps: "1. Navigate to Directory tab\n2. Tap 'Frequent' filter button", result: "List updates to show only frequently logged foods", status: "not-run", notes: ""},
-            {name: "P46 - Directory Filter by Sometimes", steps: "1. Navigate to Directory tab\n2. Tap 'Sometimes' filter button", result: "List updates to show only occasionally logged foods", status: "not-run", notes: ""},
-            {name: "P47 - Directory Filter by Not Often", steps: "1. Navigate to Directory tab\n2. Tap 'Not often' filter button", result: "List updates to show only rarely logged foods", status: "not-run", notes: ""},
-            {name: "P48 - Search Food in Directory", steps: "1. Navigate to Directory tab\n2. Tap search bar\n3. Enter 'berry'\n4. View results", result: "Search filters food list to show matching items like 'Organic Boomin' Berry Bagels'", status: "not-run", notes: ""},
-            {name: "P49 - View Planned Meals by Time", steps: "1. Navigate to Meal Plan tab\n2. Scroll to meal times section\n3. View meals at various times", result: "Meals organized chronologically with time stamps and + buttons", status: "not-run", notes: ""},
-            {name: "P50 - Meal Plan Data Persistence", steps: "1. Add meals to Meal Plan\n2. Close app completely\n3. Reopen app and navigate to Meal Plan", result: "All planned meals persist, nutritional data remains accurate, calendar maintains date", status: "not-run", notes: ""},
-            {name: "P51 - Directory Food Count", steps: "1. Navigate to Directory tab\n2. Add several foods to directory\n3. Check if food count is displayed", result: "If implemented, displays total number of foods in directory", status: "not-run", notes: ""},
-            {name: "P52 - Device Orientation Change", steps: "1. Hold device in portrait\n2. Begin logging food\n3. Rotate to landscape\n4. Rotate back to portrait", result: "UI adapts smoothly, no data loss, all elements remain accessible", status: "not-run", notes: ""},
-            {name: "P53 - Accessibility Screen Reader", steps: "1. Enable VoiceOver (iOS) or TalkBack (Android)\n2. Navigate Log Intake screen\n3. Test all buttons and inputs", result: "All UI elements have proper labels, navigation is logical, buttons announce function", status: "not-run", notes: ""},
-            {name: "P54 - Add Duplicate Food Items", steps: "1. Add 'Fresh Grapes' to log\n2. Immediately add 'Fresh Grapes' again", result: "App allows duplicate entries for multiple servings or prompts to adjust quantity", status: "not-run", notes: ""},
-            {name: "P55 - Filter with No Matching Items", steps: "1. Tap 'Not often' filter\n2. View results when no items exist in category", result: "Clean empty state: 'No foods in this category yet' with helpful suggestion", status: "not-run", notes: ""}
-        ];
+        const testData = {
+            aiPhotoScan: [
+                {id: "AI-001", name: "Free tier indicator displays", steps: "1. Open Add Food\n2. Tap 'AI Scan'\n3. Take a photo\n4. View analyze button area", result: "Should show '3 free scans remaining today' message", status: "not-run", notes: ""},
+                {id: "AI-002", name: "First scan succeeds", steps: "1. Tap 'Analyze with AI'\n2. Wait for results", result: "Scan completes successfully, count decreases to 2", status: "not-run", notes: ""},
+                {id: "AI-003", name: "Second scan succeeds", steps: "1. Take another photo\n2. Tap 'Analyze with AI'", result: "Scan completes, shows '2 free scans remaining' then '1 free scan remaining' after", status: "not-run", notes: ""},
+                {id: "AI-004", name: "Third scan succeeds", steps: "1. Take another photo\n2. Tap 'Analyze with AI'", result: "Scan completes, counter shows 0 remaining", status: "not-run", notes: ""},
+                {id: "AI-005", name: "Fourth scan blocked", steps: "1. Take another photo\n2. Tap 'Analyze with AI'", result: "Paywall appears instead of scanning", status: "not-run", notes: ""},
+                {id: "AI-006", name: "Premium user unlimited", steps: "1. Purchase premium\n2. Try AI scan", result: "No limit indicator shown, scans work unlimited", status: "not-run", notes: ""},
+                {id: "AI-007", name: "Daily reset", steps: "1. Use all 3 scans\n2. Change device date to next day\n3. Open AI Scan", result: "Counter resets to 3 scans remaining", status: "not-run", notes: ""}
+            ],
+            aiQuickAdd: [
+                {id: "QA-001", name: "Free tier indicator displays", steps: "1. Open Add Food\n2. Tap 'Quick Add'\n3. View analyze button area", result: "Should show remaining scans message (shares count with AI Scan)", status: "not-run", notes: ""},
+                {id: "QA-002", name: "Shared limit with AI Scan", steps: "1. Use 2 AI photo scans\n2. Open Quick Add\n3. Check counter", result: "Should show '1 free scan remaining'", status: "not-run", notes: ""},
+                {id: "QA-003", name: "Quick Add blocked when limit reached", steps: "1. Use all 3 AI scans (via photo or quick add)\n2. Try Quick Add analyze", result: "Paywall appears", status: "not-run", notes: ""},
+                {id: "QA-004", name: "Successful parse within limit", steps: "1. Type '1 chicken breast'\n2. Tap Analyze", result: "Food parsed successfully, count decrements", status: "not-run", notes: ""},
+                {id: "QA-005", name: "Premium unlimited", steps: "1. As premium user\n2. Use Quick Add multiple times", result: "No limits, no counter shown", status: "not-run", notes: ""}
+            ],
+            barcodeScanner: [
+                {id: "BC-001", name: "Free tier indicator displays", steps: "1. Open Add Food\n2. Tap 'Scan Barcode'\n3. View scanner overlay", result: "Should show '5 free scans remaining today' at top", status: "not-run", notes: ""},
+                {id: "BC-002", name: "Scans 1-5 succeed", steps: "1. Scan 5 different barcodes sequentially", result: "Each scan succeeds, counter decrements", status: "not-run", notes: ""},
+                {id: "BC-003", name: "Sixth scan blocked", steps: "1. After 5 scans\n2. Scan another barcode", result: "Paywall appears, barcode not processed", status: "not-run", notes: ""},
+                {id: "BC-004", name: "Indicator shows low count", steps: "1. Use 3 scans\n2. View indicator", result: "Shows '2 free scans remaining' in orange", status: "not-run", notes: ""},
+                {id: "BC-005", name: "Indicator shows limit reached", steps: "1. Use all 5 scans\n2. Open scanner", result: "Shows 'Daily limit reached' in red", status: "not-run", notes: ""},
+                {id: "BC-006", name: "Premium unlimited", steps: "1. As premium user\n2. Scan many barcodes", result: "No limit indicator, unlimited scans", status: "not-run", notes: ""},
+                {id: "BC-007", name: "Daily reset", steps: "1. Use all 5 scans\n2. Change date to tomorrow\n3. Open scanner", result: "Counter resets to 5", status: "not-run", notes: ""}
+            ],
+            historyGating: [
+                {id: "HI-001", name: "History limit indicator", steps: "1. Open Diary\n2. View date header", result: "Should show '14-day history' with 'Upgrade' link", status: "not-run", notes: ""},
+                {id: "HI-002", name: "Navigate within 14 days", steps: "1. Tap left arrow multiple times\n2. Navigate back up to 14 days", result: "Navigation works normally", status: "not-run", notes: ""},
+                {id: "HI-003", name: "Navigate beyond 14 days blocked", steps: "1. Navigate to 14 days ago\n2. Tap left arrow again", result: "Paywall appears", status: "not-run", notes: ""},
+                {id: "HI-004", name: "Date picker limited", steps: "1. Tap on date to open calendar\n2. Check selectable date range", result: "Dates beyond 14 days ago should be disabled/greyed", status: "not-run", notes: ""},
+                {id: "HI-005", name: "Premium unlimited history", steps: "1. As premium user\n2. Navigate to old dates", result: "Can navigate to any historical date", status: "not-run", notes: ""},
+                {id: "HI-006", name: "Premium no indicator", steps: "1. As premium user\n2. View Diary header", result: "No '14-day history' indicator shown", status: "not-run", notes: ""}
+            ],
+            customFoods: [
+                {id: "CF-001", name: "Counter displays", steps: "1. Open Add Food\n2. Tap 'Create Custom'\n3. View bottom area", result: "Shows '3 of 3 custom foods remaining'", status: "not-run", notes: ""},
+                {id: "CF-002", name: "First custom food", steps: "1. Fill in food details\n2. Save", result: "Food saves, counter shows '2 of 3 remaining'", status: "not-run", notes: ""},
+                {id: "CF-003", name: "Second custom food", steps: "1. Create another custom food\n2. Save", result: "Food saves, counter shows '1 of 3 remaining'", status: "not-run", notes: ""},
+                {id: "CF-004", name: "Third custom food", steps: "1. Create third custom food\n2. Save", result: "Food saves, counter shows '0 of 3 remaining'", status: "not-run", notes: ""},
+                {id: "CF-005", name: "Fourth custom food blocked", steps: "1. Try to create fourth custom food\n2. Tap Save", result: "Paywall appears, food not saved", status: "not-run", notes: ""},
+                {id: "CF-006", name: "Counter shows limit reached", steps: "1. After 3 custom foods\n2. Open Create Custom", result: "Shows 'Custom food limit reached' in red with Upgrade button", status: "not-run", notes: ""},
+                {id: "CF-007", name: "Premium unlimited", steps: "1. As premium user\n2. Create many custom foods", result: "No counter shown, unlimited custom foods", status: "not-run", notes: ""},
+                {id: "CF-008", name: "Delete restores count", steps: "1. As free user with 3 custom foods\n2. Delete one custom food\n3. Open Create Custom", result: "Counter shows '1 of 3 remaining'", status: "not-run", notes: ""}
+            ],
+            advancedNutrients: [
+                {id: "AN-001", name: "Nutrients tab shows lock", steps: "1. Open Insights\n2. View tab picker", result: "'Nutrients' tab shows lock icon", status: "not-run", notes: ""},
+                {id: "AN-002", name: "Nutrients tab blocked", steps: "1. Tap on 'Nutrients' tab", result: "Paywall appears, tab doesn't switch", status: "not-run", notes: ""},
+                {id: "AN-003", name: "Locked overlay displays", steps: "1. If somehow on Nutrients tab\n2. View content", result: "Shows LockedFeatureOverlay with blur and unlock button", status: "not-run", notes: ""},
+                {id: "AN-004", name: "Calories tab accessible", steps: "1. Tap 'Calories' tab", result: "Content displays normally, no restrictions", status: "not-run", notes: ""},
+                {id: "AN-005", name: "Macros tab accessible", steps: "1. Tap 'Macros' tab", result: "Content displays normally, no restrictions", status: "not-run", notes: ""},
+                {id: "AN-006", name: "Premium full access", steps: "1. As premium user\n2. Tap 'Nutrients' tab", result: "No lock icon, content displays (or 'coming soon' placeholder)", status: "not-run", notes: ""}
+            ],
+            paywall: [
+                {id: "PW-001", name: "Paywall displays correctly", steps: "1. Trigger any paywall\n2. View paywall UI", result: "Shows feature comparison, pricing, plan selection", status: "not-run", notes: ""},
+                {id: "PW-002", name: "Plan selection works", steps: "1. On paywall\n2. Tap different plans", result: "Selected plan highlights, price updates", status: "not-run", notes: ""},
+                {id: "PW-003", name: "Purchase flow initiates", steps: "1. Select a plan\n2. Tap Continue", result: "Initiates purchase (or Test Store sandbox)", status: "not-run", notes: ""},
+                {id: "PW-004", name: "Restore purchases works", steps: "1. Tap 'Restore Purchases'", result: "Attempts restore, shows result", status: "not-run", notes: ""},
+                {id: "PW-005", name: "Dismiss paywall", steps: "1. Tap X or swipe down", result: "Paywall dismisses, returns to previous screen", status: "not-run", notes: ""},
+                {id: "PW-006", name: "Premium unlocks features", steps: "1. Complete purchase\n2. Try gated features", result: "All previously gated features now accessible", status: "not-run", notes: ""}
+            ],
+            premiumPersistence: [
+                {id: "PS-001", name: "Premium persists after app restart", steps: "1. Purchase premium\n2. Force quit app\n3. Reopen app", result: "Still shows as premium, all features unlocked", status: "not-run", notes: ""},
+                {id: "PS-002", name: "Premium syncs across devices", steps: "1. Purchase on device A\n2. Install on device B\n3. Restore purchases", result: "Device B shows premium", status: "not-run", notes: ""},
+                {id: "PS-003", name: "Subscription expiry", steps: "1. Let sandbox subscription expire\n2. Check status", result: "Reverts to free tier, features gated again", status: "not-run", notes: ""}
+            ]
+        };
         
-        const negativeTests = [
-            {name: "N01 - Empty Search Query", steps: "1. Tap search bar\n2. Don't enter text\n3. Press search", result: "App displays placeholder or shows Recent list. No crash.", status: "not-run", notes: ""},
-            {name: "N02 - Special Characters Search", steps: "1. Tap search bar\n2. Enter '@#$%^&*()'\n3. Press search", result: "App handles gracefully with 'no results' or ignores chars", status: "not-run", notes: ""},
-            {name: "N03 - SQL Injection Search", steps: "1. Tap search bar\n2. Enter \"'; DROP TABLE foods; --\"\n3. Press search", result: "App sanitizes input. No database manipulation occurs.", status: "not-run", notes: ""},
-            {name: "N04 - Long Search String", steps: "1. Tap search bar\n2. Enter 500+ character string\n3. Press search", result: "App enforces limit, truncates, or handles gracefully", status: "not-run", notes: ""},
-            {name: "N05 - Non-existent Food", steps: "1. Tap search bar\n2. Enter 'xyzabc123zzzz'\n3. Press search", result: "Displays 'No results found' with helpful suggestion", status: "not-run", notes: ""},
-            {name: "N06 - Invalid Barcode Scan", steps: "1. Tap 'Scan' icon\n2. Point at damaged barcode\n3. Wait 5-10 seconds", result: "Error message: 'Unable to read barcode. Try again or enter manually'", status: "not-run", notes: ""},
-            {name: "N07 - Non-Food Barcode", steps: "1. Tap 'Scan' icon\n2. Scan book/electronics barcode\n3. Wait for result", result: "Indicates 'Product not found in food database'", status: "not-run", notes: ""},
-            {name: "N08 - Poor Lighting Scan", steps: "1. Tap 'Scan' icon\n2. Move to low-light area\n3. Attempt scan", result: "Displays guidance: 'Need more light' or 'Move to better lighting'", status: "not-run", notes: ""},
-            {name: "N09 - Scan No Permission", steps: "1. Deny camera permission\n2. Tap 'Scan' icon", result: "Permission request prompt with explanation", status: "not-run", notes: ""},
-            {name: "N10 - Upload No Permission", steps: "1. Deny photo permission\n2. Tap 'Upload' icon", result: "Permission request appears explaining need", status: "not-run", notes: ""},
-            {name: "N11 - Corrupted Image Upload", steps: "1. Tap 'Upload' icon\n2. Select corrupted file\n3. Attempt process", result: "Error message: 'Unable to process image. Try another photo'", status: "not-run", notes: ""},
-            {name: "N12 - Non-Food Photo Upload", steps: "1. Tap 'Upload' icon\n2. Select photo of car/building\n3. Wait for AI", result: "Indicates 'No food detected in image'", status: "not-run", notes: ""},
-            {name: "N13 - Oversized Image Upload", steps: "1. Tap 'Upload' icon\n2. Select file >50MB\n3. Attempt upload", result: "Displays file size limit or auto-compresses", status: "not-run", notes: ""},
-            {name: "N14 - Voice No Permission", steps: "1. Deny microphone permission\n2. Tap 'Describe' icon", result: "Permission prompt appears with explanation", status: "not-run", notes: ""},
-            {name: "N15 - Voice Background Noise", steps: "1. Tap 'Describe' icon\n2. Speak in noisy environment\n3. Describe food", result: "Struggles or asks 'Please speak in quieter environment'", status: "not-run", notes: ""},
-            {name: "N16 - Voice Unclear Speech", steps: "1. Tap 'Describe' icon\n2. Mumble unclearly\n3. Say food name", result: "Displays 'Couldn't understand. Please repeat' or shows best guess", status: "not-run", notes: ""},
-            {name: "N17 - Voice Wrong Language", steps: "1. Tap 'Describe' icon\n2. Speak in Mandarin/Arabic\n3. Complete speech", result: "Displays 'Language not supported' or poor transcription", status: "not-run", notes: ""},
-            {name: "N18 - Offline Food Logging", steps: "1. Turn off WiFi and cellular\n2. Attempt to add food\n3. Tap '+' button", result: "App queues entry with 'Will sync when online' message", status: "not-run", notes: ""},
-            {name: "N19 - Rapid Button Taps", steps: "1. Locate any food item\n2. Rapidly tap '+' 10 times in 2 sec", result: "Only one entry logged or proper handling with debouncing", status: "not-run", notes: ""},
-            {name: "N20 - App Backgrounding", steps: "1. Start adding food\n2. Press home button\n3. Wait 10 seconds\n4. Return to app", result: "App preserves state, entry maintained or saved as draft", status: "not-run", notes: ""},
-            {name: "N21 - Low Device Memory", steps: "1. Fill device memory to <10%\n2. Launch app\n3. Log food with photo", result: "Functions with degradation or displays low memory warning", status: "not-run", notes: ""},
-            {name: "N22 - Skip Required Fields", steps: "1. Begin adding custom food\n2. Leave required fields empty\n3. Attempt save", result: "Validation message with highlighted fields", status: "not-run", notes: ""},
-            {name: "N23 - Navigate Without Saving", steps: "1. Start adding food entry\n2. Switch to Directory tab\n3. Return to Quick log", result: "Unsaved changes prompt or auto-saved as draft", status: "not-run", notes: ""},
-            {name: "N24 - Empty List Scroll", steps: "1. Clear all Recent items\n2. View Recent tab\n3. Attempt scroll", result: "Displays empty state message, no scroll errors", status: "not-run", notes: ""},
-            {name: "N25 - Exceed Calorie Target", steps: "1. Navigate to Meal Plan\n2. Add meals exceeding target\n3. View caloric bar", result: "Progress bar fills beyond 100%, shows exceeded amount", status: "not-run", notes: ""}
-        ];
-        
-        function renderTests() {
-            const positiveBody = document.getElementById('positiveTestBody');
-            const negativeBody = document.getElementById('negativeTestBody');
-            
-            positiveBody.innerHTML = '';
-            negativeBody.innerHTML = '';
-            
-            positiveTests.forEach(function(test, index) {
-                positiveBody.appendChild(createTestRow(test, index, 'positive'));
-            });
-            
-            negativeTests.forEach(function(test, index) {
-                negativeBody.appendChild(createTestRow(test, index, 'negative'));
-            });
-        }
-        
-        function createTestRow(test, index, type) {
+        function createTestRow(test, index, category) {
             const row = document.createElement('tr');
             
             row.innerHTML = 
+                '<td contenteditable="true" class="col-id">' + test.id + '</td>' +
                 '<td contenteditable="true" class="col-name">' + test.name + '</td>' +
                 '<td contenteditable="true" class="col-steps">' + test.steps + '</td>' +
                 '<td contenteditable="true" class="col-result">' + test.result + '</td>' +
                 '<td class="col-status">' +
                     '<div class="status-radios">' +
                         '<label class="pass">' +
-                            '<input type="radio" name="status_' + type + '_' + index + '" value="pass" ' + 
-                            (test.status === 'pass' ? 'checked' : '') + ' onchange="updateStatus(\'' + type + '\', ' + index + ', \'pass\')"> Pass' +
+                            '<input type="radio" name="status_' + category + '_' + index + '" value="pass" ' + 
+                            (test.status === 'pass' ? 'checked' : '') + ' onchange="updateStatus(\'' + category + '\', ' + index + ', \'pass\')"> Pass' +
                         '</label>' +
                         '<label class="fail">' +
-                            '<input type="radio" name="status_' + type + '_' + index + '" value="fail" ' + 
-                            (test.status === 'fail' ? 'checked' : '') + ' onchange="updateStatus(\'' + type + '\', ' + index + ', \'fail\')"> Fail' +
+                            '<input type="radio" name="status_' + category + '_' + index + '" value="fail" ' + 
+                            (test.status === 'fail' ? 'checked' : '') + ' onchange="updateStatus(\'' + category + '\', ' + index + ', \'fail\')"> Fail' +
                         '</label>' +
                         '<label class="not-run">' +
-                            '<input type="radio" name="status_' + type + '_' + index + '" value="not-run" ' + 
-                            (test.status === 'not-run' ? 'checked' : '') + ' onchange="updateStatus(\'' + type + '\', ' + index + ', \'not-run\')"> Not Run' +
+                            '<input type="radio" name="status_' + category + '_' + index + '" value="not-run" ' + 
+                            (test.status === 'not-run' ? 'checked' : '') + ' onchange="updateStatus(\'' + category + '\', ' + index + ', \'not-run\')"> Not Run' +
                         '</label>' +
                     '</div>' +
                 '</td>' +
                 '<td contenteditable="true" class="col-notes">' + test.notes + '</td>' +
-                '<td class="col-actions"><button class="delete-btn" onclick="deleteTest(\'' + type + '\', ' + index + ')">×</button></td>';
+                '<td class="col-actions"><button class="delete-btn" onclick="deleteTest(\'' + category + '\', ' + index + ')">×</button></td>';
             
             return row;
         }
         
-        function updateStatus(type, index, newStatus) {
-            if (type === 'positive') {
-                positiveTests[index].status = newStatus;
-            } else {
-                negativeTests[index].status = newStatus;
-            }
+        function renderTests() {
+            const categories = [
+                {name: 'aiPhotoScan', bodyId: 'aiPhotoScanBody'},
+                {name: 'aiQuickAdd', bodyId: 'aiQuickAddBody'},
+                {name: 'barcodeScanner', bodyId: 'barcodeScannerBody'},
+                {name: 'historyGating', bodyId: 'historyGatingBody'},
+                {name: 'customFoods', bodyId: 'customFoodsBody'},
+                {name: 'advancedNutrients', bodyId: 'advancedNutrientsBody'},
+                {name: 'paywall', bodyId: 'paywallBody'},
+                {name: 'premiumPersistence', bodyId: 'premiumPersistenceBody'}
+            ];
+            
+            categories.forEach(function(cat) {
+                const body = document.getElementById(cat.bodyId);
+                body.innerHTML = '';
+                testData[cat.name].forEach(function(test, index) {
+                    body.appendChild(createTestRow(test, index, cat.name));
+                });
+            });
+        }
+        
+        function updateStatus(category, index, newStatus) {
+            testData[category][index].status = newStatus;
             renderTests();
         }
         
-        function deleteTest(type, index) {
+        function deleteTest(category, index) {
             if (confirm('Are you sure you want to delete this test case?')) {
-                if (type === 'positive') {
-                    positiveTests.splice(index, 1);
-                } else {
-                    negativeTests.splice(index, 1);
-                }
+                testData[category].splice(index, 1);
                 renderTests();
             }
         }
         
-        function addNewRow() {
-            const num = positiveTests.length + 1;
-            positiveTests.push({
-                name: 'P' + String(num).padStart(2, '0') + ' - New Test Case',
-                steps: '1. Step one\n2. Step two',
-                result: 'Expected result',
-                status: 'not-run',
-                notes: ''
-            });
-            renderTests();
-        }
-        
-        function clearAllData() {
-            const num = negativeTests.length + 1;
-            negativeTests.push({
-                name: 'N' + String(num).padStart(2, '0') + ' - New Test Case',
-                steps: '1. Step one\n2. Step two',
-                result: 'Expected result',
-                status: 'not-run',
-                notes: ''
-            });
-            renderTests();
+        function addCustomTest() {
+            const category = prompt('Which category? (aiPhotoScan, aiQuickAdd, barcodeScanner, historyGating, customFoods, advancedNutrients, paywall, premiumPersistence)');
+            if (category && testData[category]) {
+                const newId = prompt('Enter Test ID (e.g., AI-008):');
+                if (newId) {
+                    testData[category].push({
+                        id: newId,
+                        name: 'New Test Case',
+                        steps: '1. Step one\n2. Step two',
+                        result: 'Expected result',
+                        status: 'not-run',
+                        notes: ''
+                    });
+                    renderTests();
+                }
+            }
         }
         
         function exportToCSV() {
             const regressionRound = document.getElementById('regressionRound').value;
             const buildVersion = document.getElementById('buildVersion').value;
             const testDate = document.getElementById('testDate').value;
-            const testName = document.getElementById('testName').value;
+            const testerName = document.getElementById('testerName').value;
             const environment = document.getElementById('environment').value;
             const deviceOS = document.getElementById('deviceOS').value;
             
-            let csv = 'Measures - Nutrition Log Test Cases\n\n';
+            let csv = 'Epic 25 Phase 6-7: Freemium Feature Gating - Test Cases\n\n';
             csv += 'Regression Round,' + regressionRound + '\n';
             csv += 'Build Version,' + buildVersion + '\n';
             csv += 'Test Date,' + testDate + '\n';
-            csv += 'Test Name,' + testName + '\n';
+            csv += 'Tester Name,' + testerName + '\n';
             csv += 'Environment,' + environment + '\n';
             csv += 'Device/OS,' + deviceOS + '\n\n';
             
-            csv += 'POSITIVE TEST CASES\n';
-            csv += 'Test Case Name,Steps,Expected Result,Status,Notes\n';
+            const categories = [
+                {name: 'AI Photo Scan Gating', data: testData.aiPhotoScan},
+                {name: 'AI Quick Add Gating', data: testData.aiQuickAdd},
+                {name: 'Barcode Scanner Gating', data: testData.barcodeScanner},
+                {name: 'History Gating (14-Day Limit)', data: testData.historyGating},
+                {name: 'Custom Foods Limit (3 Max)', data: testData.customFoods},
+                {name: 'Advanced Nutrients Gating', data: testData.advancedNutrients},
+                {name: 'Paywall Integration', data: testData.paywall},
+                {name: 'Premium Status Persistence', data: testData.premiumPersistence}
+            ];
             
-            positiveTests.forEach(function(test) {
-                csv += '"' + test.name + '","' + test.steps.replace(/"/g, '""') + '","' + 
-                       test.result.replace(/"/g, '""') + '","' + test.status + '","' + 
-                       test.notes.replace(/"/g, '""') + '"\n';
-            });
-            
-            csv += '\nNEGATIVE TEST CASES\n';
-            csv += 'Test Case Name,Steps,Expected Result,Status,Notes\n';
-            
-            negativeTests.forEach(function(test) {
-                csv += '"' + test.name + '","' + test.steps.replace(/"/g, '""') + '","' + 
-                       test.result.replace(/"/g, '""') + '","' + test.status + '","' + 
-                       test.notes.replace(/"/g, '""') + '"\n';
+            categories.forEach(function(cat) {
+                csv += cat.name + '\n';
+                csv += 'Test ID,Test Name,Steps,Expected Result,Status,Notes\n';
+                cat.data.forEach(function(test) {
+                    csv += '"' + test.id + '","' + test.name + '","' + test.steps.replace(/"/g, '""') + '","' + 
+                           test.result.replace(/"/g, '""') + '","' + test.status + '","' + test.notes.replace(/"/g, '""') + '"\n';
+                });
+                csv += '\n';
             });
             
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'Measures_Nutrition_Log_TestCases_' + (buildVersion || 'export') + '.csv';
+            a.download = 'Epic25_Freemium_Gating_TestCases_' + (buildVersion || 'export') + '.csv';
             a.click();
             window.URL.revokeObjectURL(url);
         }
+        
+        // Auto-calculate totals
+        document.addEventListener('input', function(e) {
+            if (e.target.type === 'number' && e.target.id.startsWith('summary-')) {
+                let totalPass = 0, totalFail = 0, totalBlocked = 0;
+                
+                const categories = ['ai-photo', 'ai-quick', 'barcode', 'history', 'custom', 'nutrients', 'paywall', 'premium'];
+                categories.forEach(function(cat) {
+                    totalPass += parseInt(document.getElementById('summary-' + cat + '-pass').value) || 0;
+                    totalFail += parseInt(document.getElementById('summary-' + cat + '-fail').value) || 0;
+                    totalBlocked += parseInt(document.getElementById('summary-' + cat + '-blocked').value) || 0;
+                });
+                
+                document.getElementById('total-pass').textContent = totalPass;
+                document.getElementById('total-fail').textContent = totalFail;
+                document.getElementById('total-blocked').textContent = totalBlocked;
+            }
+        });
         
         renderTests();
     </script>
