@@ -381,9 +381,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <div class="header h1">
             <h1>Epic 25 Phase 6-7: Freemium Feature Gating - Test Cases</h1>
-            <div class="subtitle">Version 1.0 | December 30, 2025</div>
+            <div class="subtitle">Version 1.1 | December 31, 2025</div>
+            <div class="subtitle" style="font-size: 12px; margin-top: 5px; color: #f59e0b;">Changelog: v1.1 (Dec 31) - Added Progress Photos, Body Measurements, PDF Export, and CSV Export gating tests (Phase 7 completion)</div>
             
             <div class="regression-info">
                 <div class="info-field">
@@ -539,7 +540,97 @@
             </table>
         </div>
         
-        <div class="section-title">7. Paywall Integration (6 Tests)</div>
+        <div class="section-title">8. Premium Status Persistence (3 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="premiumPersistenceBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">9. Progress Photos Gating (7 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="progressPhotosBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">10. Body Measurements Gating (7 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyMeasurementsBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">11. PDF Export Gating - Progress (3 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="pdfExportBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">12. CSV Export Gating - Settings (5 Tests)</div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-id">Test ID</th>
+                        <th class="col-name">Test Name</th>
+                        <th class="col-steps">Steps</th>
+                        <th class="col-result">Expected Result</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-notes">Notes</th>
+                        <th class="col-actions">Del</th>
+                    </tr>
+                </thead>
+                <tbody id="csvExportBody"></tbody>
+            </table>
+        </div>
+        
+        <div class="section-title">13. Paywall Integration (6 Tests)</div>
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -557,7 +648,7 @@
             </table>
         </div>
         
-        <div class="section-title">8. Premium Status Persistence (3 Tests)</div>
+        <div class="section-title">14. Premium Status Persistence (3 Tests)</div>
         <div class="table-wrapper">
             <table>
                 <thead>
@@ -571,7 +662,7 @@
                         <th class="col-actions">Del</th>
                     </tr>
                 </thead>
-                <tbody id="premiumPersistenceBody"></tbody>
+                <tbody id="premiumPersistence2Body"></tbody>
             </table>
         </div>
         
@@ -631,6 +722,34 @@
                         <td><input type="number" id="summary-nutrients-blocked" min="0" max="6" value="0"></td>
                     </tr>
                     <tr>
+                        <td>Progress Photos</td>
+                        <td>7</td>
+                        <td><input type="number" id="summary-progress-photos-pass" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-progress-photos-fail" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-progress-photos-blocked" min="0" max="7" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Body Measurements</td>
+                        <td>7</td>
+                        <td><input type="number" id="summary-body-measurements-pass" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-body-measurements-fail" min="0" max="7" value="0"></td>
+                        <td><input type="number" id="summary-body-measurements-blocked" min="0" max="7" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>PDF Export</td>
+                        <td>3</td>
+                        <td><input type="number" id="summary-pdf-export-pass" min="0" max="3" value="0"></td>
+                        <td><input type="number" id="summary-pdf-export-fail" min="0" max="3" value="0"></td>
+                        <td><input type="number" id="summary-pdf-export-blocked" min="0" max="3" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td>CSV Export</td>
+                        <td>5</td>
+                        <td><input type="number" id="summary-csv-export-pass" min="0" max="5" value="0"></td>
+                        <td><input type="number" id="summary-csv-export-fail" min="0" max="5" value="0"></td>
+                        <td><input type="number" id="summary-csv-export-blocked" min="0" max="5" value="0"></td>
+                    </tr>
+                    <tr>
                         <td>Paywall Integration</td>
                         <td>6</td>
                         <td><input type="number" id="summary-paywall-pass" min="0" max="6" value="0"></td>
@@ -646,7 +765,7 @@
                     </tr>
                     <tr style="font-weight: 600; background: #3a3d5c;">
                         <td>TOTAL</td>
-                        <td>48</td>
+                        <td>70</td>
                         <td id="total-pass">0</td>
                         <td id="total-fail">0</td>
                         <td id="total-blocked">0</td>
@@ -749,6 +868,36 @@
                 {id: "PS-001", name: "Premium persists after app restart", steps: "1. Purchase premium\n2. Force quit app\n3. Reopen app", result: "Still shows as premium, all features unlocked", status: "not-run", notes: ""},
                 {id: "PS-002", name: "Premium syncs across devices", steps: "1. Purchase on device A\n2. Install on device B\n3. Restore purchases", result: "Device B shows premium", status: "not-run", notes: ""},
                 {id: "PS-003", name: "Subscription expiry", steps: "1. Let sandbox subscription expire\n2. Check status", result: "Reverts to free tier, features gated again", status: "not-run", notes: ""}
+            ],
+            progressPhotos: [
+                {id: "PP-001", name: "PRO badge displays", steps: "1. Open Progress tab\n2. Scroll to 'Progress Photos' card", result: "Card header shows PRO badge next to title", status: "not-run", notes: ""},
+                {id: "PP-002", name: "Add button shows lock", steps: "1. View Progress Photos card header", result: "'+' button shows small lock icon", status: "not-run", notes: ""},
+                {id: "PP-003", name: "Add photo blocked", steps: "1. Tap '+' button to add photo", result: "Paywall appears, photo picker doesn't open", status: "not-run", notes: ""},
+                {id: "PP-004", name: "Empty state shows upgrade", steps: "1. View empty Progress Photos card", result: "Shows 'Unlock with Premium' button instead of 'Add Photo'", status: "not-run", notes: ""},
+                {id: "PP-005", name: "Empty state upgrade works", steps: "1. Tap 'Unlock with Premium'", result: "Paywall appears", status: "not-run", notes: ""},
+                {id: "PP-006", name: "Premium can add photos", steps: "1. As premium user\n2. Tap '+' button", result: "Photo picker opens, can add photos", status: "not-run", notes: ""},
+                {id: "PP-007", name: "Premium no badge", steps: "1. As premium user\n2. View Progress Photos card", result: "No PRO badge, no lock icons", status: "not-run", notes: ""}
+            ],
+            bodyMeasurements: [
+                {id: "BM-001", name: "PRO badge displays", steps: "1. Open Progress tab\n2. Scroll to 'Body Measurements' card", result: "Card header shows PRO badge next to title", status: "not-run", notes: ""},
+                {id: "BM-002", name: "Add button shows lock", steps: "1. View Body Measurements card header", result: "'+' button shows small lock icon", status: "not-run", notes: ""},
+                {id: "BM-003", name: "Add measurement blocked", steps: "1. Tap '+' button to add measurement", result: "Paywall appears, form doesn't open", status: "not-run", notes: ""},
+                {id: "BM-004", name: "Empty state shows upgrade", steps: "1. View empty Body Measurements card", result: "Shows 'Unlock with Premium' button instead of 'Add Measurement'", status: "not-run", notes: ""},
+                {id: "BM-005", name: "Empty state upgrade works", steps: "1. Tap 'Unlock with Premium'", result: "Paywall appears", status: "not-run", notes: ""},
+                {id: "BM-006", name: "Premium can add measurements", steps: "1. As premium user\n2. Tap '+' button", result: "Measurement form opens, can add data", status: "not-run", notes: ""},
+                {id: "BM-007", name: "Premium no badge", steps: "1. As premium user\n2. View Body Measurements card", result: "No PRO badge, no lock icons", status: "not-run", notes: ""}
+            ],
+            pdfExport: [
+                {id: "PE-001", name: "Export button shows lock", steps: "1. Open Progress tab\n2. View toolbar (top left)", result: "Export button shows small lock icon", status: "not-run", notes: ""},
+                {id: "PE-002", name: "Export blocked", steps: "1. Tap Export button in toolbar", result: "Paywall appears, PDF not generated", status: "not-run", notes: ""},
+                {id: "PE-003", name: "Premium can export PDF", steps: "1. As premium user\n2. Tap Export button", result: "PDF generates and share sheet appears", status: "not-run", notes: ""}
+            ],
+            csvExport: [
+                {id: "CE-001", name: "PRO badge displays", steps: "1. Open Settings > Data section", result: "'Export Data' shows PRO badge", status: "not-run", notes: ""},
+                {id: "CE-002", name: "Lock icon displays", steps: "1. View Export Data row", result: "Right side shows lock icon instead of chevron", status: "not-run", notes: ""},
+                {id: "CE-003", name: "Export blocked", steps: "1. Tap 'Export Data'", result: "Paywall appears, export sheet doesn't open", status: "not-run", notes: ""},
+                {id: "CE-004", name: "Premium can export CSV", steps: "1. As premium user\n2. Tap 'Export Data'", result: "Export sheet opens, can export CSV", status: "not-run", notes: ""},
+                {id: "CE-005", name: "Premium no badge", steps: "1. As premium user\n2. View Export Data row", result: "No PRO badge, shows chevron", status: "not-run", notes: ""}
             ]
         };
         
@@ -790,8 +939,13 @@
                 {name: 'historyGating', bodyId: 'historyGatingBody'},
                 {name: 'customFoods', bodyId: 'customFoodsBody'},
                 {name: 'advancedNutrients', bodyId: 'advancedNutrientsBody'},
+                {name: 'premiumPersistence', bodyId: 'premiumPersistenceBody'},
+                {name: 'progressPhotos', bodyId: 'progressPhotosBody'},
+                {name: 'bodyMeasurements', bodyId: 'bodyMeasurementsBody'},
+                {name: 'pdfExport', bodyId: 'pdfExportBody'},
+                {name: 'csvExport', bodyId: 'csvExportBody'},
                 {name: 'paywall', bodyId: 'paywallBody'},
-                {name: 'premiumPersistence', bodyId: 'premiumPersistenceBody'}
+                {name: 'premiumPersistence', bodyId: 'premiumPersistence2Body'}
             ];
             
             categories.forEach(function(cat) {
@@ -816,7 +970,7 @@
         }
         
         function addCustomTest() {
-            const category = prompt('Which category? (aiPhotoScan, aiQuickAdd, barcodeScanner, historyGating, customFoods, advancedNutrients, paywall, premiumPersistence)');
+            const category = prompt('Which category? (aiPhotoScan, aiQuickAdd, barcodeScanner, historyGating, customFoods, advancedNutrients, progressPhotos, bodyMeasurements, pdfExport, csvExport, paywall, premiumPersistence)');
             if (category && testData[category]) {
                 const newId = prompt('Enter Test ID (e.g., AI-008):');
                 if (newId) {
@@ -856,6 +1010,10 @@
                 {name: 'History Gating (14-Day Limit)', data: testData.historyGating},
                 {name: 'Custom Foods Limit (3 Max)', data: testData.customFoods},
                 {name: 'Advanced Nutrients Gating', data: testData.advancedNutrients},
+                {name: 'Progress Photos Gating', data: testData.progressPhotos},
+                {name: 'Body Measurements Gating', data: testData.bodyMeasurements},
+                {name: 'PDF Export Gating (Progress)', data: testData.pdfExport},
+                {name: 'CSV Export Gating (Settings)', data: testData.csvExport},
                 {name: 'Paywall Integration', data: testData.paywall},
                 {name: 'Premium Status Persistence', data: testData.premiumPersistence}
             ];
@@ -884,7 +1042,7 @@
             if (e.target.type === 'number' && e.target.id.startsWith('summary-')) {
                 let totalPass = 0, totalFail = 0, totalBlocked = 0;
                 
-                const categories = ['ai-photo', 'ai-quick', 'barcode', 'history', 'custom', 'nutrients', 'paywall', 'premium'];
+                const categories = ['ai-photo', 'ai-quick', 'barcode', 'history', 'custom', 'nutrients', 'progress-photos', 'body-measurements', 'pdf-export', 'csv-export', 'paywall', 'premium'];
                 categories.forEach(function(cat) {
                     totalPass += parseInt(document.getElementById('summary-' + cat + '-pass').value) || 0;
                     totalFail += parseInt(document.getElementById('summary-' + cat + '-fail').value) || 0;
